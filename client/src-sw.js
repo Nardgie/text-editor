@@ -32,10 +32,7 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 //asset cache
 
-precacheAndRoute(self.__WB_MANIFEST);
-
-
-registerRoute(({ request }) => request.destination === 'script' || request.destination === 'style', assetCache), 
+registerRoute(({ request }) => request.destination === "asset", 
 new CacheFirst({
   cacheName: 'asset-cache',
   plugins: [
@@ -47,4 +44,5 @@ new CacheFirst({
       maxAgeSeconds: 30 * 24 * 60 * 60,
     })
   ]
-});
+})
+);
