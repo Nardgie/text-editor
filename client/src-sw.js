@@ -51,4 +51,4 @@ const assetCache = new CacheFirst({
   ],
 });
 
-registerRoute(({ request }) => request.destination === 'script' || request.destination === 'style', assetCache);
+registerRoute(({ request }) => request.destination === 'script' || request.destination === 'style', assetCache), 

@@ -6,31 +6,42 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = () => {
   return {
-    mode: 'development',
+    mode: "development",
     entry: {
-      main: './src/js/index.js',
-      install: './src/js/install.js'
+      main: "./src/js/index.js",
+      install: "./src/js/install.js",
     },
+
     output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+      filename: "[name].bundle.js",
+      path: path.resolve(__dirname, "dist"),
     },
+
     plugins: [
       new WorkboxWebpackPlugin.InjectManifest({
-        swSrc: './src/js/service-worker.js',
-        swDest: 'service-worker.js',
+        swSrc: "./src/js/service-worker.js",
+        swDest: "service-worker.js",
+      }),
+      new HtmlWebpackPlugin({
+        template: "./src/index.html",
+        filename: "./index.html",
+        chunks: ["main"],
+      }),
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "src-sw.js",
       }),
       new WebpackPwaManifest({
-        name: 'My App',
-        short_name: 'App',
-        description: 'My Progressive Web App',
-        background_color: '#ffffff',
-        theme_color: '#000000',
+        name: "Jate",
+        short_name: "Jate",
+        description: "My Progressive Web App",
+        background_color: "#ffffff",
+        theme_color: "#000000",
         icons: [
           {
-            src: path.resolve('src/assets/icon.png'),
+            src: path.resolve("src/assets/icon.png"),
             sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join('assets', 'icons'),
+            destination: path.join("assets", "icons"),
           },
         ],
       }),
@@ -39,7 +50,7 @@ module.exports = () => {
 
     module: {
       rules: [
-        module.exports = () => {
+        (module.exports = () => {
           return {
             mode: "development",
             entry: {
@@ -74,9 +85,7 @@ module.exports = () => {
               ],
             },
           };
-        },
-  
-        
+        }),
       ],
     },
   };
