@@ -29,14 +29,14 @@ module.exports = () => {
       }),
       new InjectManifest({
         swSrc: "./src-sw.js",
-        swDest: "src-sw.js",
+        swDest: "service-worker.js",
       }),
       new WebpackPwaManifest({
-        name: "Jate",
-        short_name: "Jate",
-        description: "My Progressive Web App",
+        name: "Your App Name",
+        short_name: "App",
+        description: "Your App Description",
         background_color: "#ffffff",
-        theme_color: "#000000",
+        crossorigin: "use-credentials",
         icons: [
           {
             src: path.resolve("src/assets/icon.png"),
@@ -47,49 +47,33 @@ module.exports = () => {
       }),
     ],
     // TODO: Add CSS loaders and babel to webpack.
-
     module: {
-      rules: [
-        (module.exports = () => {
-          return {
-            mode: "development",
-            entry: {
-              main: "./src/js/index.js",
-              install: "./src/js/install.js",
-            },
-            output: {
-              filename: "[name].bundle.js",
-              path: path.resolve(__dirname, "dist"),
-            },
-            module: {
               // CSS and JS loaders
-              rules: [
-                {
-                  test: /\.css$/,
-                  use: ["style-loader", "css-loader"],
-                },
-                {
-                  test: /\.js$/,
-                  exclude: /node_modules/,
-                  use: {
-                    loader: "babel-loader",
-                    options: {
-                      presets: ["@babel/preset-env"],
-                      plugins: [
-                        "@babel/plugin-proposal-object-rest-spread",
-                        "@babel/transform-runtime",
-                      ],
-                    },
-                  },
-                },
+      rules: [
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"],
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+              plugins: [
+                "@babel/plugin-proposal-object-rest-spread",
+                "@babel/transform-runtime",
               ],
             },
-          };
-        }),
+          },
+        },
       ],
-    },
-  };
-};
+            },
+          };
+        
+    }
+
 
 // TODO: Add CSS loaders and babel to webpack.
 
