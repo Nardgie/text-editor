@@ -6,14 +6,9 @@ const { ExpirationPlugin } = require('workbox-expiration');
 const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
 
 
-const { registerRoute } = require('workbox-routing');
-const { CacheFirst } = require('workbox-strategies');
-const { CacheableResponsePlugin } = require('workbox-cacheable-response');
-const { ExpirationPlugin } = require('workbox-expiration');
-const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
 
 
-
+//page cache
 precacheAndRoute(self.__WB_MANIFEST);
 
 const pageCache = new CacheFirst({
@@ -39,16 +34,17 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 precacheAndRoute(self.__WB_MANIFEST);
 
-const assetCache = new CacheFirst({
+
+registerRoute(({ request }) => request.destination === 'script' || request.destination === 'style', assetCache), 
+new CacheFirst({
   cacheName: 'asset-cache',
   plugins: [
     new CacheableResponsePlugin({
-      statuses: [0, 200],
+      statuses: [0, 200]
     }),
     new ExpirationPlugin({
+      maxEntries: 100, // only cache 100 assets
       maxAgeSeconds: 30 * 24 * 60 * 60,
-    }),
-  ],
+    })
+  ]
 });
-
-registerRoute(({ request }) => request.destination === 'script' || request.destination === 'style', assetCache), 
