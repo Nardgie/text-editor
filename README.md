@@ -13,14 +13,7 @@ Text-Editor is a single-page application that functions as a Progressive Web App
 
 ## Installation
 
-To install and run Text-Editor on your local machine, follow these steps:
-
-1. Clone the repository from GitHub to your local machine.
-2. Navigate to the project directory and install all dependencies by running:
-
-This command starts both the backend and serves the client, ensuring full functionality of the PWA.
-
-4. Ensure you have a `.npmrc` file in your project root as per the starter code to deploy properly to Render.
+No installation explicily required to run this app. See Usage for link to application
 
 ## Usage
 
@@ -29,14 +22,18 @@ Text-Editor is designed to be intuitive and easy to use:
 1. **Starting the Application**: vist [text-editor-site](https://text-editor-3f3n.onrender.com/)
 
 2. **Using the Editor**: Any text or code snippets entered into the editor will be automatically saved to IndexedDB when you click off the DOM window.
+
 3. **Offline Functionality**: The service worker bundled with the application provides offline capabilities, caching all necessary assets and data.
+
 4. **Installation on Desktop**: Click on the 'Install' button within the application to download and install the web application as an icon on your desktop.
 
 
 
 ## Credits
 
-This project was developed by me, nardgelen Jean Francois with starter code from UCF Coding Bootcamps
+This project was developed by me, Nardgelen Jean Francois with starter code from UCF Coding Bootcamps
+
+Service-worker provided by Google Inc.
 
 This project utilizes the following open source packages:
 
@@ -50,6 +47,8 @@ This project utilizes the following open source packages:
 ## License
 
 No license to show for this project.
+
+_________________________________________________
 
 
 ## Features
